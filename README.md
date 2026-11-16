@@ -14,11 +14,11 @@ This is a **public beta**. See the compatibility table below for the distinction
 
 ## Demo drive
 
-[![Fura GPS demo drive in tablet and phone layouts](docs/videos/furagps-demo-preview.gif)](https://github.com/vancopek123/FuraGPS/raw/refs/heads/main/docs/videos/furagps-demo-1080p60.mp4)
+[![Fura GPS straight-road demo in tablet and phone layouts](docs/videos/furagps-demo-straight-preview.gif)](https://github.com/vancopek123/FuraGPS/raw/refs/heads/main/docs/videos/furagps-demo-straight-1080p60.mp4)
 
-**[Download the full demo video — 1080p, 60 fps, 24 seconds](https://github.com/vancopek123/FuraGPS/raw/refs/heads/main/docs/videos/furagps-demo-1080p60.mp4)**
+**[Download the full demo video — 1080p, 60 fps, 24 seconds](https://github.com/vancopek123/FuraGPS/raw/refs/heads/main/docs/videos/furagps-demo-straight-1080p60.mp4)**
 
-A genuine recording of the built-in ETS2 demo, captured in a desktop browser at tablet and phone viewport sizes and presented inside illustrated device frames. Playback is at the original demo speed. The short animated preview loops above; the full MP4 shows the continuous drive, G-meter comfort colors and Coach demo timetable. [Recording details](docs/videos/README.md).
+A genuine recording of Fura GPS demo playback on a straight ATS road section, captured in a desktop browser at tablet and phone viewport sizes and presented inside illustrated device frames. Playback is at the original demo speed. The short animated preview loops above; the full MP4 shows continuous road movement, the vehicle marker and the heading-up 3D map. [Recording details](docs/videos/README.md).
 
 ## What you get
 
