@@ -3,7 +3,9 @@
 Turn your Android phone, tablet or browser into a local GPS screen for ETS2 and ATS.
 
 - Smooth 3D/2D navigation, separate game maps, city search and custom routes.
-- Experimental read-only in-game GPS following and ETS2 Coach tools.
+- Experimental read-only in-game GPS following, including active-stage changes exposed by the game.
+- **G-force comfort meter (beta):** cornering, acceleration and braking feedback with green, orange and red warnings, adjustable sensitivity and optional visibility.
+- **ETS2 Coach DLC punctuality (beta):** Early / On time / Late with the difference in in-game minutes for the active stage. Supported game builds use live timetable data; fallback values are labelled ESTIMATE.
 - Seven UI languages, metric/imperial units and optional instruments.
 - A redesigned connection screen with LAN discovery, saved PC and manual IP/port.
 - English installer filenames and complete English installation documentation.
@@ -21,7 +23,7 @@ Existing 0.11 users can retain their map data and telemetry DLL. The APK keeps t
 
 ## Beta status
 
-ATS maps, custom routes, SDK fixtures and installed executable signatures are checked. A real ATS drive, physical Android installation/discovery and device-specific FPS still need testing. The G-meter is an adjustable vehicle-acceleration estimate, not a direct passenger score.
+ATS maps, custom routes, SDK fixtures and installed executable signatures are checked. A real ATS drive, physical Android installation/discovery and device-specific FPS still need testing. The G-meter is an adjustable vehicle-acceleration estimate. Coach tools remain in beta development; the live timetable adapter is checked for ETS2 1.62.3.3, including a previous HaulMP stage, and rejects unsupported layouts.
 
 External map files are not bundled. The downloader uses the original pinned upstream release; map-data rights remain separate from the MIT code license. No game archives, signing keys or personal diagnostics are distributed.
 

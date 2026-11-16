@@ -4,7 +4,7 @@
 
 Fura GPS turns your Android phone, tablet or browser into a dedicated navigation screen for **Euro Truck Simulator 2** and **American Truck Simulator**. Connect over your local network, keep the game on your main display, and follow a smooth 3D map on a second screen.
 
-City search, custom routes, seven languages and optional ETS2 Coach instruments — without accounts, ads or distance limits.
+City search, custom routes, seven languages and experimental ETS2 Coach DLC tools: a G-force comfort meter and live punctuality display — without accounts, ads or distance limits.
 
 ![Fura GPS on phone, tablet and browser](docs/images/showcase.png)
 
@@ -18,10 +18,13 @@ This is a **public beta**. See the compatibility table below for the distinction
 - **ETS2 and ATS:** separate maps and telemetry, automatic game selection, city search and custom destinations.
 - **Experimental in-game routes:** read-only GPS following, including stage changes exposed by the game. Custom routing remains available when reading is unsupported.
 - **Optional instruments:** speed, RPM, fuel range, cruise control and available vehicle warnings.
-- **ETS2 Coach tools:** active-stage timetable and an adjustable comfort/G-meter. Show it automatically for Coach jobs, always, or hide it.
+- **G-force comfort meter (beta):** monitor cornering, acceleration and braking with a moving dot and green, orange and red comfort warnings. Adjust sensitivity, show it automatically during ETS2 Coach jobs, always show it, or hide it.
+- **ETS2 Coach DLC punctuality (beta):** see **Early / On time / Late** while driving, with the difference in in-game minutes for the active stage. Supported builds use live game timetable data; fallback calculations are labelled **ESTIMATE**.
 - **Phone-friendly connection:** find your PC on the LAN, reuse the last connection, or enter its IP and port manually.
 - **Your units and language:** metric or imperial units; English, Slovenian, German, Croatian, Italian, French and Spanish.
 - **Local operation:** no account, analytics, advertising, phone-location permission or route-length limit. Internet is needed for initial downloads, not for local driving.
+
+The Coach tools are **still in beta development** and are available for ETS2, including experimental use with HaulMP. The comfort meter estimates G-force from vehicle acceleration; its warning colors are adjustable. The timetable reader follows the active stage and next stop exposed by supported game builds. See [Coach tools and settings](furagps/COACH-DASHBOARD.txt) for display modes and current limits.
 
 ## Quick start
 
@@ -90,8 +93,8 @@ These show the actual Fura GPS demo UI at the stated viewport sizes. Phone/table
 | ETS2 / ATS telemetry | Both SDK game identities tested end to end with an isolated native harness |
 | Maps and custom routes | Actual ETS2/ATS data, official-DLC filtering and 3D demos tested |
 | In-game GPS | Experimental ETS2/ATS 1.62.x reader; installed ATS signatures checked, a real ATS drive still needed |
-| ETS2 Coach timetable | Read-only adapter for the checked ETS2 1.62.3.3 build; unknown layouts are rejected |
-| G-meter colors | Adjustable estimates from vehicle acceleration, not a directly read passenger score or an exact copy of the game's meter |
+| ETS2 Coach DLC punctuality (beta) | Live active-stage timing adapter for the checked ETS2 1.62.3.3 build, including a previously checked HaulMP stage; unknown layouts are rejected and fallback values are labelled ESTIMATE |
+| G-force comfort meter (beta) | Adjustable green/orange/red warnings based on vehicle acceleration; the game's passenger score, exact colors and filtering are not read directly |
 | Android | Signed APK and bundled UI/layout tests; physical-device installation, Wi-Fi discovery and device-specific FPS still need testing |
 | Mod maps | Not included in this release |
 
