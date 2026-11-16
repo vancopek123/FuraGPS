@@ -1,0 +1,27 @@
+**/bin/
+**/obj/
+**/build/
+**/node_modules/
+**/data/
+**/screens/
+**/*.jks
+**/*.keystore
+**/*.pfx
+**/*.key
+**/*.apk
+**/*.dll
+**/*.exe
+**/*.pmtiles
+**/*.zip
+**/*.log
+.env
+.env.*
+local.settings.json
+.vs/
+.idea/
+.codex/
+artifacts/
+dist/
+
+# Official prebuilt Android release; the private signing key is never committed.
+!distribution/android/FuraGPS-Android-0.11.1.apk

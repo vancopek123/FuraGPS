@@ -1,0 +1,12 @@
+FURA GPS — OPTIONAL SUPPORT
+
+Core navigation is free. No payment account, donation link, subscription,
+advertising SDK or in-app purchase is configured in this release.
+
+Possible future support models include voluntary one-time/monthly support,
+original dashboard themes, or custom layouts for virtual trucking companies.
+These are ideas, not shipped paid features or promises of revenue.
+
+Map-data rights are separate from the MIT application code. A funding link or
+public download does not grant permission to rehost or sell third-party maps.
+See THIRD-PARTY-NOTICES.txt before distributing commercial bundles.

@@ -1,0 +1,38 @@
+FURA GPS 0.11.1 — UPGRADE GUIDE
+
+FROM 0.11
+Close FuraGPS.exe, extract this update into its existing folder and allow file
+replacement. Keep data/. Install the new APK over the existing official app.
+The telemetry DLL remains 0.11.0, so you can skip Install-Plugin.cmd when that
+version is already installed. Restart FuraGPS.exe and reopen/refresh the device.
+
+English launcher names replace the previous Slovenian names:
+  Download-Maps.cmd  — download missing ETS2/ATS maps
+  Install-Plugin.cmd — install the game telemetry plugin
+  Allow-LAN.cmd      — allow private-LAN HTTP and PC discovery in Windows Firewall
+Use these new names. Existing older launchers in your own folder may remain
+after extraction; the new release ZIP contains only the English names.
+
+FROM 0.7–0.10
+Keep data/, close FuraGPS.exe and replace the app files with this update.
+For ATS, run Download-Maps.cmd. To install DLL 0.11, close both games and run
+Install-Plugin.cmd. Start FuraGPS.exe, restart the game and accept the SDK prompt.
+Install the new APK over the old official app; the signing certificate is unchanged.
+
+IF A GAME IS NOT DETECTED
+In PowerShell from the app folder, run:
+  .\Install-Plugin.ps1 -Game ats -GamePath "YOUR_ATS_FOLDER"
+or:
+  .\Install-Plugin.ps1 -Game ets2 -GamePath "YOUR_ETS2_FOLDER"
+The selected folder must contain the actual game executable in bin/win_x64/.
+
+WHAT CHANGED IN 0.11.1
+English document/launcher names and complete English installation guidance;
+updated in-app launcher references; new phone, tablet and browser screenshots;
+an English project description and a prepared GitHub release workflow.
+Navigation, map formats and the telemetry DLL are unchanged from 0.11.
+
+MAP DATA
+Public ZIPs do not contain external map files. Download-Maps.cmd retrieves the
+pinned upstream archives and verifies SHA-256. This is not permission to host or
+sell the map data. See THIRD-PARTY-NOTICES.txt.

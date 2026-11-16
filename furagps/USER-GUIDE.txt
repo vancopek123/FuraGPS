@@ -1,0 +1,48 @@
+FURA GPS 0.11.1 – ETS2 + ATS COMPANION
+
+Windows x64 + Android 8 or newer. Phone/tablet and PC must share a local network.
+No account, phone location, route-length limit or online driving service.
+
+FIRST INSTALL
+1. Extract the Windows package to a folder you can write to.
+2. Run Download-Maps.cmd (Download-Maps.ps1 -Game all). Missing maps are
+   downloaded from the original upstream release; existing maps are skipped.
+3. Close ETS2/ATS and run Install-Plugin.cmd (Install-Plugin.ps1). The new
+   telemetry DLL is installed in detected game folders; previous DLL is backed up.
+4. Start FuraGPS.exe, then the game. Accept the game's SDK plugin prompt.
+5. Install FuraGPS.apk on Android. Use Find my PC or enter the IP and port shown
+   by the Windows program. Keep FuraGPS.exe running while driving.
+6. If discovery is blocked, use manual IP. Allow-LAN.cmd adds Windows Firewall
+   rules for the private local subnet only: HTTP TCP 28888 and discovery UDP 28890.
+
+UPGRADE FROM 0.7–0.11
+Close FuraGPS.exe and overwrite its folder with the update. Keep data/.
+Download the ATS map if needed. To use ATS, close the game and install DLL 0.11.
+Install the APK over the previous app: its signing certificate is unchanged.
+
+SETTINGS
+Tap FURA GPS: language (SL/EN/DE/HR/IT/FR/ES), game, km/miles, rendering quality,
+3D tilt and dashboard settings. Language changes keep the active route.
+Automatic game selection follows active driving; each game has separate data.
+ATS defaults to mph/miles/US gallons, ETS2 to km/h/km/litres; override as desired.
+Smooth is the default rendering mode. Sharp increases detail and GPU load.
+G-meter is automatic for active ETS2 Coach jobs, or Always show / Hide manually.
+Coach timetable is ETS2 only. Comfort colors remain an adjustable estimate from
+vehicle acceleration; they are not a direct passenger-score measurement.
+
+LIMITATIONS
+GPS memory reader: ETS2/ATS 1.62.x, read-only, experimental. Unsupported builds
+fail closed. ATS signatures/map/routing/SDK fixtures are checked; an actual ATS
+drive is still required. Custom destination routing remains available.
+Maps use the pinned upstream map-assets release. Official DLC routing is filtered by
+installed DLC archives; mod maps are not part of this release.
+Android screenshots and layout tests use the actual bundled web assets in a
+browser. Physical Android installation, device discovery and FPS need testing.
+
+RIGHTS AND PRIVACY
+Original code is MIT; external maps are not covered by that license. Public ZIPs
+exclude map files. Read THIRD-PARTY-NOTICES.txt before redistributing data.
+Navigation uses local PC-to-device HTTP; keep it on your trusted home network.
+No analytics, account, advertising or phone-location permission is included.
+Initial map download contacts GitHub. Discovery broadcasts on your LAN and the
+PC responds with its machine name, service version and HTTP port.

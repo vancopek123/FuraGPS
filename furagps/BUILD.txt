@@ -1,0 +1,67 @@
+FURA GPS 0.11 – SOURCE BUILD
+
+Repository layout: furagps/ contains source; scs-sdk/ contains MIT SDK headers.
+Requirements: .NET 10 SDK, Node.js 24+, MSVC x64, JDK/Android SDK for APK builds.
+
+WINDOWS
+From repository root:
+dotnet publish furagps/server/FuraGPS.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -o dist
+Copy installer scripts, plugin DLL, APK, license notices and licenses/ into dist/.
+Download-Maps.ps1 writes ETS2 files to data/ and ATS files to data/ats/.
+Download only from the pinned upstream release; no map data is in this repository.
+Use FURAGPS_ETS2_PATH / FURAGPS_ATS_PATH to override Steam detection if necessary.
+
+NATIVE DLL
+Run furagps/build-plugin.cmd from a Windows terminal. It uses cl.exe from the
+current developer environment or discovers installed Visual Studio via vswhere.
+Output: furagps/build/furagps-telemetry.dll. The official SCS game IDs accepted
+are eut2 and ats. Output packets identify them as ets2 and ats.
+Production UDP is loopback 28887. Never load a test DLL into a user's game.
+test-plugin.cmd builds a separate DLL with FURAGPS_UDP_PORT=28897 and runs the
+synthetic SDK host. Argument ats tests the ATS SDK identity; eut2 tests ETS2.
+
+ANDROID
+Install Android platform 36 and build-tools 36.0.0. Set JAVA_HOME to a JDK and
+ANDROID_SDK_ROOT to the SDK, then run:
+powershell -File furagps/build-android.ps1
+Optional parameters: -JavaHome PATH -AndroidSdk PATH.
+Output: furagps/build/FuraGPS.apk. Missing local development keystore is generated
+inside build/. Never commit or distribute the publisher's signing key.
+The signing password is read from FURAGPS_KEYSTORE_PASSWORD or a secure prompt;
+FURAGPS_KEY_PASSWORD defaults to the store password for that process only.
+Optional FURAGPS_KEYSTORE_FILE and FURAGPS_KEY_ALIAS select an existing key.
+No signing passwords are embedded in the source or passed as literal arguments.
+The build copies connection.html/css/js, translations/i18n and shared HUD layout
+assets and exports the seven-language catalog for native dialogs using Node.js.
+A different signing certificate cannot update the official Android app in place.
+
+QUICK CHECKS
+node furagps/tests/camera.mjs
+node furagps/tests/dashboard.mjs
+node furagps/tests/frontend.mjs
+node furagps/tests/i18n.mjs
+dotnet run --project furagps/gps-tests/GpsTests.csproj
+dotnet run --project furagps/network-tests/NetworkTests.csproj
+GPS fixture optional first argument: local ETS2/ATS executable for read-only
+signature validation. Coach exact-build validation runs only for ETS2.
+
+INTEGRATION / BROWSER QA
+Start a separate built server with copied local maps and these variables:
+FURAGPS_PORT=28889, FURAGPS_UDP_PORT=28897, FURAGPS_LOOPBACK=1.
+Do not use the user's live server or UDP 28887 for fabricated positions.
+FURAGPS_TEST_URL=http://127.0.0.1:28889 and FURAGPS_TEST_UDP=28897 configure tests.
+Run integration.mjs before injecting synthetic data; then games.mjs,
+native-games.mjs (requires the separate test DLL/host), and stream.mjs.
+qa/: npm ci, then release-preview.mjs, layout-overlap.mjs and motion-preview.mjs.
+These use an isolated headless Chrome and actual web assets, not personal tabs.
+installers.ps1 tests copied scripts against fake game folders and a previously
+downloaded ats-map.zip placed beside furagps/; no real game files are modified.
+Public GitHub CI performs source/fixture checks only; a hosted run is not claimed
+until the repository is published. Physical Android and live ATS remain separate.
+
+RELEASE CONTENTS
+Include original-code MIT and all relevant third-party notices. Exclude map data,
+game files, signing keys, node_modules, temporary captures, logs and personal
+diagnostics from the repository. Keep documentation of what was actually tested.
+Game memory reading is read-only, version-gated and rejects inconsistent layouts.
+Source and map rights: THIRD-PARTY-NOTICES.txt / CREDITS.txt.

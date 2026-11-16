@@ -1,0 +1,50 @@
+FURA GPS 0.11.1 — EXPERIMENTAL GAME GPS READER
+
+ENABLE GAME ROUTE FOLLOWING
+Install the telemetry plugin, start FuraGPS.exe and enter your vehicle in ETS2
+or ATS. Tap the Fura GPS logo and enable Follow game GPS and stage changes.
+Set/activate a route in the game's GPS. The confirmed route appears in Fura GPS.
+Selecting a city manually switches to Fura GPS custom routing.
+
+WHAT IT READS
+The Windows server checks active navigation nodes and available GPS waypoints
+roughly four times per second. It compares the complete route, including changes
+to the middle of equal-length routes. A new route needs two matching snapshots.
+Errors, unsupported layouts and disconnects clear stale routes and targets.
+Targets stay in the order exposed by the game. The reader never changes them.
+
+COACH JOBS WITH MULTIPLE STOPS
+When the game activates the next stage, Fura GPS follows that new route. It does
+not invent stop completion or interpret the end of one stage as the end of the
+entire job. The game may expose only the current stage and next target; a full
+hidden Coach/HaulMP stop list is not guaranteed. This reader is separate from
+the ETS2 Coach timetable adapter described in COACH-DASHBOARD.txt.
+
+ROUTE GEOMETRY
+Game GPS nodes are matched to road curves in the local map, rather than routed
+again to the last city. Unmatched sections are marked approximate. Map versions,
+DLCs and multiplayer changes can differ. Imported routes currently say Follow
+the active route; exact internal turn instructions/exit numbers are not read.
+
+COMPATIBILITY
+Read-only Windows x64 reader for ETS2/ATS 1.62.x. It checks executable patterns,
+controller types, vector sizes, coordinates, route consistency and loaded code.
+Unknown builds or unreliable data are rejected. It never writes process memory,
+calls game functions, steers, changes stops or controls the vehicle.
+ATS executable signatures and synthetic fixtures have been checked. A real ATS
+drive is still required; a successful signature scan alone does not prove every
+runtime layout. Custom destination routing remains available if reading fails.
+
+TROUBLESHOOTING
+Waiting for game: start the selected game. Waiting for vehicle: load the vehicle
+and verify the telemetry plugin. Checking route: wait for consistent snapshots.
+No active route: activate a route or wait for the next stage. Unsupported build:
+use custom routing and report the exact game/app versions.
+If HaulMP is running with elevated privileges, use matching privileges for the
+reader; Fura GPS does not automatically request administrator access.
+
+DIAGNOSTICS
+Tap Fura GPS -> Download GPS diagnostics. The JSON includes reader status,
+game/build information, active targets and route data. Remove personal PC names,
+file paths and IP addresses before attaching it to a public issue. Report what
+the game GPS showed and whether the issue happened during a stage transition.

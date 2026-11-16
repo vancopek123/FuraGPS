@@ -1,0 +1,44 @@
+FURA GPS 0.11.1 — START HERE
+Your next haul, on a bigger screen.
+
+WHAT YOU NEED
+A Windows x64 PC running ETS2 or ATS, and an Android phone/tablet or modern
+browser. Connect the PC and device to the same local network.
+
+FIRST INSTALL — WINDOWS
+1. Extract the complete Windows ZIP into a folder you can write to.
+2. Double-click Download-Maps.cmd. It downloads missing maps from the original
+   upstream source and skips maps already installed. Internet is needed here.
+3. Close ETS2 and ATS, then double-click Install-Plugin.cmd. It installs the
+   telemetry plugin in detected game folders and backs up an existing DLL.
+4. Start FuraGPS.exe and keep its window open. Start the game and accept its
+   SDK plugin prompt. Load your vehicle.
+
+ANDROID
+5. Install FuraGPS-Android-0.11.1.apk, or FuraGPS.apk included in the Windows ZIP.
+   Install over an existing official Fura GPS app to keep its saved PC address.
+6. Open Fura GPS and tap Find my PC. Select your PC, or enter the LAN IP and
+   port shown by FuraGPS.exe. The default HTTP port is 28888.
+7. Set a route in the game, or select a city in Fura GPS for a custom route.
+
+BROWSER
+Open http://localhost:28888 on the PC, or the PC's LAN address on another device.
+Use the LAN address shown by FuraGPS.exe, not localhost, on your phone/tablet.
+
+IF THE PHONE CANNOT CONNECT
+Keep both devices on the same Wi-Fi/LAN. Disable guest-network isolation if you
+control that network, or use your normal home network. Check the saved IP.
+If Windows Firewall blocks the connection, run Allow-LAN.cmd. Its administrator
+prompt is for private-local-network rules only. Manual IP remains available if
+PC discovery is blocked. Keep the server private; do not forward its internet port.
+
+ALREADY USING FURA GPS?
+Read UPGRADE-0.11.1.txt. Keep your existing data folder. Version 0.11.1 uses the
+same telemetry DLL as 0.11; existing 0.11 users do not need to reinstall it.
+
+MORE INFORMATION
+USER-GUIDE.txt          Settings, units, languages and daily use
+GAME-GPS-READER.txt     Experimental game-route following and its limits
+COACH-DASHBOARD.txt     ETS2 Coach schedule, G-force and extra instruments
+TESTING-0.11.1.txt      What was tested and what still needs device/game testing
+THIRD-PARTY-NOTICES.txt Map-data rights and third-party licenses

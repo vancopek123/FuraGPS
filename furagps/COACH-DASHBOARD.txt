@@ -1,0 +1,52 @@
+FURA GPS 0.11.1 — DASHBOARD AND ETS2 COACH TOOLS
+
+The dashboard adds game time, RPM, fuel range, cruise control and available
+vehicle warnings. Expand More instruments for the extra values. Collapse the
+card or disable it in settings when you want more map space.
+
+G-METER VISIBILITY
+Automatic: shown during an active ETS2 Coach job; hidden for ordinary trucks.
+Always show: manual display, including free driving by bus without an active job.
+Hide: hide only the G-meter while keeping other instruments.
+Automatic detection uses active Coach job data, not the physical vehicle model.
+Coach timetable reading is ETS2 only; it is not enabled in ATS.
+
+WHAT G-FORCE MEANS HERE
+The SDK supplies local VEHICLE acceleration. The main number is horizontal
+acceleration (lateral plus acceleration/braking) divided by 9.80665 m/s².
+The dot shows direction; vertical acceleration and peak values are in the extra
+instruments. The plugin retains brief spikes between its approximately 10-Hz
+packets. It does not measure individual passengers on their seats.
+
+COMFORT COLORS
+Green: smooth. Orange: ease off. Red: too harsh.
+Higher levels appear immediately and are held briefly so short spikes stay
+visible. Sensitivity is adjustable from 0.5 to 2.5 times. At 1x, approximate
+warning thresholds are 0.10 g and 0.20 g. These are adjustable HUD estimates;
+the game's exact warning colors, filters and measurement point are not read.
+They are not claimed to match the game meter one-to-one.
+
+ADVANCED MODES
+Coach penalty limits uses per-axis local/reference penalty definitions, not the
+earlier comfort warnings. Disabled axes and unavailable vertical data are handled
+explicitly. Multiplayer changes to those definitions are not confirmed.
+Custom G threshold compares horizontal G-force to your chosen limit.
+Reset peak G clears the peak. Pause/missing telemetry clears live readings.
+Demo and live measurements are separate.
+
+LIVE COACH TIMETABLE
+The adapter follows the active Coach stage, its next-checkpoint ETA, departure
+bounds and rolling timetable correction. It resolves derived arrival/departure
+times instead of treating every unset field as a missing schedule. Live values
+take priority over an old manual delivery-clock entry.
+The display tolerance is inclusive -4 to +4 in-game minutes. Stages mode also
+shows early arrival; Game HUD mode counts early arrival as on time.
+If live reading is unavailable, SDK/GPS or manual fallback is labelled ESTIMATE.
+Manual entry uses the game clock; choose Tomorrow in game across midnight.
+Changing game clears the previous game's live Coach scope and manual timetable.
+
+BUILD LIMITS
+The exact Coach adapter was checked for ETS2 1.62.3.3, including a previous live
+HaulMP stage. Unknown executable/loaded-code changes and inconsistent stage
+reads are rejected. That check does not validate all G colors or every server.
+See TESTING-0.11.1.txt and GAME-GPS-READER.txt for test coverage and diagnostics.

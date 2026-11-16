@@ -1,0 +1,21 @@
+void Check(bool value,string message){if(!value)throw new Exception(message);Console.WriteLine("PASS: "+message);}
+var data=System.IO.Path.GetFullPath(args[0]);
+var all=new RoadMap(data,Enumerable.Range(1,11).ToHashSet());
+City City(RoadMap map,string token)=>map.Cities.First(c=>c.Token==token);
+RouteResult? Route(RoadMap map,City a,City b,bool ferries=false)=>map.Route(new(a.X,a.Y,b.X,b.Y,null,ferries));
+var lj=City(all,"ljubljana");var koper=City(all,"koper");
+var route=Route(all,lj,koper);
+Check(route!=null&&route.UsedDlcs.Contains(8),"Ljubljana–Koper uses West Balkans roads");
+Check(route!.Points.Zip(route.Points.Skip(1),(a,b)=>Math.Sqrt((a.X-b.X)*(a.X-b.X)+(a.Z-b.Z)*(a.Z-b.Z))).Max()<100,"Ljubljana–Koper geometry is continuous");
+Check(route.Instructions.All(i=>i.Index<route.Points.Length),"instruction indexes stay within route geometry");
+var london=City(all,"london");var berlin=City(all,"berlin");
+var ferry=Route(all,london,berlin);Check(ferry!=null&&ferry.Instructions.Any(i=>i.Kind=="ferry"),"UK crossing is marked as a ferry/train crossing");
+var noFerry=Route(all,london,berlin,true);Check(noFerry==null||noFerry.Instructions.All(i=>i.Kind!="ferry"),"avoid-ferry routes do not silently include ferry edges");
+var baseMap=new RoadMap(data,new());
+Check(baseMap.Cities.Count<all.Cities.Count,"base game excludes cities in unowned DLCs");
+Check(!baseMap.Cities.Any(c=>c.Token=="ljubljana"),"West Balkans city is absent without the DLC");
+var baseRoute=Route(baseMap,City(baseMap,"munchen"),City(baseMap,"paris"));
+Check(baseRoute!=null&&baseRoute.UsedDlcs.Length==0,"base-game Munich–Paris route never enters an unowned DLC");
+Check(Route(baseMap,City(baseMap,"munchen"),lj)==null,"destination in unavailable DLC returns no route");
+Console.WriteLine($"All routing checks passed; {all.Cities.Count} DLC cities / {baseMap.Cities.Count} base-game cities.");
+record RouteRequest(double X,double Z,double ToX,double ToZ,double? Heading=null,bool AvoidFerries=false);

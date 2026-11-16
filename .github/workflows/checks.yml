@@ -1,0 +1,23 @@
+name: Checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  source-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+      - run: node furagps/tests/camera.mjs
+      - run: node furagps/tests/dashboard.mjs
+      - run: node furagps/tests/frontend.mjs
+      - run: node furagps/tests/i18n.mjs
+      - run: dotnet build furagps/server/FuraGPS.csproj -c Release
+      - run: dotnet run --project furagps/gps-tests/GpsTests.csproj
+      - run: dotnet run --project furagps/network-tests/NetworkTests.csproj

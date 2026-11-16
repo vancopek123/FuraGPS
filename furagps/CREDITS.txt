@@ -1,0 +1,43 @@
+FURA GPS 0.11.1 — CREDITS
+
+Original interface, local Windows server, Android companion, routing and SDK
+bridge: Fura GPS contributors, MIT. See LICENSE.txt and the public source.
+
+MAP DATA (NOT COVERED BY THE FURA GPS MIT LICENSE)
+Rares Muntean / TruckNav-Maps:
+https://github.com/Rares-Muntean/TruckNav-Maps
+https://github.com/Rares-Muntean/TruckNav-Maps/releases/tag/map-assets
+ETS2 and ATS data are downloaded directly from the pinned upstream release.
+Public Fura GPS packages do not redistribute those files. The upstream repository
+did not declare a map-data license when checked. Download links and tool licenses
+do not establish permission to sell or rehost the data. See THIRD-PARTY-NOTICES.txt.
+The road-graph format was inspected in TruckNav-Sim's packer documentation/code;
+its GPL application code is not included in Fura GPS. Upstream map tools include
+truckermudgeon/maps (GPL-3.0): https://github.com/truckermudgeon/maps
+
+SCS SOFTWARE
+Euro Truck Simulator 2, American Truck Simulator, DLCs and original game assets
+belong to SCS Software and relevant rights holders. This is an independent
+companion and is not endorsed by SCS Software, HaulMP or TruckNav.
+SCS Telemetry SDK headers: Copyright SCS Software, MIT.
+https://modding.scssoft.com/wiki/Documentation/Engine/SDK/Telemetry
+The SDK license is included in SCS-SDK-LICENSE.txt.
+
+RENDERING AND RUNTIMES
+MapLibre GL JS 5.14.0, BSD-3-Clause: https://maplibre.org/
+PMTiles 4.3.0, BSD-3-Clause: https://github.com/protomaps/PMTiles
+Windows builds include Microsoft .NET / ASP.NET Core. Their licenses and
+third-party notices are retained in licenses/. Android uses the system WebView.
+
+READ-ONLY GPS REFERENCES
+GPS signatures/layout references: ETS2LA/plugin, MIT; original work credited to
+Dario Wouters. https://github.com/ETS2LA/plugin
+License: licenses/ETS2LA-PLUGIN-LICENSE.txt. No ETS2LA vehicle-control functions
+or DLL are included; Fura GPS uses its own standalone read-only reader.
+
+HASHFS FORMAT REFERENCE
+scs_tools format description, Copyright 2026 scs_tools contributors, MIT:
+https://github.com/Wilps93/scs_tools/blob/main/FORMAT.md
+License: licenses/SCS-TOOLS-LICENSE.txt. The targeted reader uses a predefined
+path hash; CityHash implementation code is not included. Original game archives
+and game executables are never part of the public source/release packages.

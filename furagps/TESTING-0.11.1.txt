@@ -1,0 +1,33 @@
+FURA GPS 0.11.1 — VERIFICATION AND LIMITATIONS
+
+BASELINE CHECKS FROM 0.11
+- Windows .NET 10 self-contained build, native x64 SDK DLL and signed Android APK.
+- Seven complete UI languages; 261 unique catalog keys, parameter preservation,
+  nested dynamic messages and static HTML/accessibility translation coverage.
+- Actual ETS2/ATS PMTiles and route calculations with installed-DLC filtering.
+- Both SDK identities (eut2/ats) through an isolated native host, test UDP 28897
+  and separate game HTTP/SSE snapshots. Paused games do not steal auto selection.
+- Actual 3D demos, game switching, metric/imperial units, automatic/manual G
+  visibility, phone/tablet layout and 144 additional geometry states.
+- Wi-Fi packet batching, adaptive interpolation, map/arrow render synchronization
+  and unchanged telemetry without repeated dashboard DOM mutations.
+- UDP discovery on an isolated local port, invalid-query rejection and LAN-IP
+  filtering. Map-download and plugin-backup checks use copied scripts/fake folders.
+- Read-only installed ATS signature scan, plus synthetic GPS/Coach/rules fixtures.
+
+0.11.1 PUBLICATION CHECKS
+- English launcher/document names, English instructions and updated references.
+- No obsolete Slovenian launcher/document filenames in the new public packages.
+- Screenshot sets at phone, tablet and desktop-browser viewport sizes, labelled
+  as demo/browser captures rather than physical-device or live-ATS screenshots.
+- Source/runtime ZIP audit excludes private keys, personal development paths,
+  external map files, game archives and dependency/build folders.
+- APK update signing certificate matches previous official Fura GPS builds.
+- Prepared GitHub checks/release workflow; hosted results must be verified on
+  the actual repository and are not implied by local build success.
+
+STILL NEEDS TESTING
+An actual ATS drive and its runtime route layout; physical Android installation,
+real Wi-Fi discovery/firewall combinations, device-specific FPS and exact G-color
+comparison with the in-game Coach meter. No fixed 60-FPS guarantee is made.
+Map-data rights are separate from the MIT code license. Public ZIPs exclude maps.

@@ -1,0 +1,99 @@
+name: Build and publish public beta
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  release:
+    permissions:
+      contents: write
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+      - name: Source and fixture checks
+        shell: pwsh
+        run: |
+          node furagps/tests/camera.mjs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          node furagps/tests/dashboard.mjs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          node furagps/tests/frontend.mjs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          node furagps/tests/i18n.mjs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          dotnet run --project furagps/gps-tests/GpsTests.csproj
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          dotnet run --project furagps/network-tests/NetworkTests.csproj
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Test and build native SDK plugin
+        working-directory: furagps
+        shell: cmd
+        run: |
+          call test-plugin.cmd eut2
+          if errorlevel 1 exit /b 1
+          call test-plugin.cmd ats
+          if errorlevel 1 exit /b 1
+          call build-plugin.cmd
+          if errorlevel 1 exit /b 1
+      - name: Build Windows server
+        run: dotnet publish furagps/server/FuraGPS.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -p:DebugType=None -o publish
+      - name: Stage English release packages
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          [xml]$project=Get-Content furagps/server/FuraGPS.csproj
+          $version=[string]$project.Project.PropertyGroup.Version
+          "FURAGPS_RELEASE_VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          $apk="distribution/android/FuraGPS-Android-$version.apk"
+          $expected=(Get-Content ($apk+'.sha256')).Split(' ')[0]
+          if((Get-FileHash -LiteralPath $apk -Algorithm SHA256).Hash.ToLowerInvariant() -ne $expected){throw 'Prebuilt APK hash mismatch.'}
+          $stage='dist/FuraGPS'
+          New-Item -ItemType Directory -Path $stage,(Join-Path $stage 'plugin') -Force | Out-Null
+          Copy-Item -Path publish/* -Destination $stage -Recurse -Force
+          $names=@('START-HERE.txt','USER-GUIDE.txt','BUILD.txt','CREDITS.txt','LICENSE.txt','THIRD-PARTY-NOTICES.txt',"UPGRADE-$version.txt","TESTING-$version.txt",'GAME-GPS-READER.txt','COACH-DASHBOARD.txt','SCS-SDK-LICENSE.txt','Download-Maps.ps1','Download-Maps.cmd','Install-Plugin.ps1','Install-Plugin.cmd','Allow-LAN.ps1','Allow-LAN.cmd')
+          foreach($name in $names){Copy-Item -LiteralPath (Join-Path 'furagps' $name) -Destination $stage}
+          Copy-Item -LiteralPath furagps/licenses -Destination $stage -Recurse
+          Copy-Item -LiteralPath furagps/build/furagps-telemetry.dll -Destination (Join-Path $stage 'plugin/furagps-telemetry.dll')
+          Copy-Item -LiteralPath $apk -Destination (Join-Path $stage 'FuraGPS.apk')
+          $unexpected=Get-ChildItem $stage -Recurse -File | Where-Object {$_.Extension -in @('.jks','.keystore','.pfx','.key','.pmtiles') -or $_.Name -in @('graph.bin','geometry.bin','cities.json')}
+          if($unexpected){throw 'Excluded data/key found in release stage.'}
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          [IO.Compression.ZipFile]::CreateFromDirectory((Join-Path $PWD $stage),(Join-Path $PWD "dist/FuraGPS-Windows-$version.zip"))
+          [IO.Compression.ZipFile]::CreateFromDirectory((Join-Path $PWD 'docs/images'),(Join-Path $PWD "dist/FuraGPS-Screenshots-$version.zip"))
+          Copy-Item -LiteralPath $apk -Destination "dist/FuraGPS-Android-$version.apk"
+          $files=@("FuraGPS-Windows-$version.zip","FuraGPS-Android-$version.apk","FuraGPS-Screenshots-$version.zip")
+          $lines=foreach($name in $files){$hash=Get-FileHash -LiteralPath (Join-Path 'dist' $name) -Algorithm SHA256;"$($hash.Hash.ToLowerInvariant())  $name"}
+          [IO.File]::WriteAllLines((Join-Path $PWD 'dist/SHA256SUMS.txt'),$lines,[Text.UTF8Encoding]::new($false))
+      - name: Publish verified assets
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $ErrorActionPreference='Stop'
+          $tag='v'+$env:FURAGPS_RELEASE_VERSION
+          $repo=$env:GITHUB_REPOSITORY
+          $assets=@("dist/FuraGPS-Windows-$env:FURAGPS_RELEASE_VERSION.zip","dist/FuraGPS-Android-$env:FURAGPS_RELEASE_VERSION.apk","dist/FuraGPS-Screenshots-$env:FURAGPS_RELEASE_VERSION.zip",'dist/SHA256SUMS.txt')
+          $existing=& gh release view $tag --repo $repo --json isDraft,assets 2>$null
+          if($LASTEXITCODE -eq 0){
+            $state=$existing | ConvertFrom-Json
+            if(-not $state.isDraft){
+              foreach($file in $assets){if((Split-Path $file -Leaf) -notin $state.assets.name){throw 'Published release is missing an asset; refusing to overwrite it.'}}
+              Write-Host 'Complete public release already exists; leaving it unchanged.'
+              exit 0
+            }
+          }else{
+            & gh release create $tag --repo $repo --draft --prerelease --target $env:GITHUB_SHA --title "Fura GPS $env:FURAGPS_RELEASE_VERSION - Public beta" --notes-file RELEASE-NOTES.md
+            if($LASTEXITCODE){exit $LASTEXITCODE}
+          }
+          & gh release upload $tag @assets --repo $repo --clobber
+          if($LASTEXITCODE){exit $LASTEXITCODE}
+          & gh release edit $tag --repo $repo --draft=false --prerelease
+          if($LASTEXITCODE){exit $LASTEXITCODE}

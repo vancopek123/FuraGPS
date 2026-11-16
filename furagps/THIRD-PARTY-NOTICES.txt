@@ -1,0 +1,30 @@
+FURA GPS 0.11 – THIRD-PARTY RIGHTS
+
+Fura GPS original code: MIT (LICENSE.txt).
+MapLibre GL JS 5.14.0: BSD-3-Clause, license in licenses/.
+PMTiles 4.3.0: BSD-3-Clause, license in licenses/.
+SCS Telemetry SDK headers: MIT, SCS-SDK-LICENSE.txt.
+ETS2LA/plugin GPS signatures/layout references: MIT, ETS2LA-PLUGIN-LICENSE.txt.
+scs_tools HashFS format reference: MIT, SCS-TOOLS-LICENSE.txt.
+.NET/ASP.NET runtime: Microsoft open-source notices/licenses retained in licenses/.
+
+MAP DATA – NOT COVERED BY FURA GPS'S MIT LICENSE
+Upstream: https://github.com/Rares-Muntean/TruckNav-Maps
+Assets: https://github.com/Rares-Muntean/TruckNav-Maps/releases/tag/map-assets
+ETS2 archive SHA256: f401826998ec96b467a8f280277bb6b5177a7e612d764f87a79b33fa0e3082bb
+ATS archive SHA256:  1fae3af5a6874db02e26d76ad3b4117c2a64bc43c41299d4810bb4cd36f82e67
+Checked 16 November 2026: upstream repository metadata declares no license and
+its README only describes map-asset storage. This does not establish permission
+to redistribute, commercially bundle or sell these archives. Public Fura GPS
+packages exclude graph/geometry/city/PMTiles files and only include a downloader
+pointing to the fixed upstream release. A download link is not a license grant.
+Obtain clarification from relevant rights holders before hosting or selling maps.
+The tools used upstream include truckermudgeon/maps (GPL-3.0); its application
+code is not bundled here. A tool's license alone does not settle game-data rights.
+
+Euro Truck Simulator 2, American Truck Simulator, DLCs, names and original game
+assets belong to SCS Software and relevant rights holders. Fura GPS is an
+independent companion, not endorsed by SCS Software, HaulMP or TruckNav.
+Screenshots show Fura GPS demo routes and the actual APK connection web assets.
+No game executables, game archives, personal driving records or signing keys
+are included in the public repository package.
