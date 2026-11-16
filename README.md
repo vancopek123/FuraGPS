@@ -120,11 +120,15 @@ The small prebuilt APK in `distribution/android/` is the signed release artifact
 
 To report a bug, include game/app versions, device/WebView or browser, and reproduction steps. Remove personal PC names, file paths and IP addresses before sharing diagnostics. See [SECURITY.md](SECURITY.md) for local-network assumptions.
 
-## Licenses and map data
+## Credits, licenses and map data
 
 Original Fura GPS code is **MIT**. External maps and SCS game content have separate rights.
 
-Public ZIPs exclude game files and map archives/graph/geometry/city/PMTiles data. The map downloader retrieves fixed, hash-checked assets from [TruckNav-Maps](https://github.com/Rares-Muntean/TruckNav-Maps/releases/tag/map-assets). That repository did not declare a map-data license when checked. Downloading or linking to those assets is not a permission grant to host or sell them.
+Map assets are downloaded directly from [TruckNav-Maps](https://github.com/Rares-Muntean/TruckNav-Maps/releases/tag/map-assets), maintained by Rares Muntean. Thank you to the TruckNav-Maps project and the map-tool contributors for their work.
+
+Run **`Download-Maps.cmd`** to download the map files separately. The downloader checks each download against a pinned SHA-256 checksum. Public Fura GPS ZIPs contain the application and setup tools; game files and map assets are not included.
+
+Source attribution and map-data licensing details are documented in the notices linked below.
 
 See [third-party notices](furagps/THIRD-PARTY-NOTICES.txt) and [credits](furagps/CREDITS.txt). Rendering uses MapLibre GL JS and PMTiles; telemetry uses SCS's SDK. Read-only GPS layout references use the MIT-licensed ETS2LA/plugin work.
 
