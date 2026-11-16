@@ -1,12 +1,13 @@
 FURA GPS — OPTIONAL SUPPORT
 
-Core navigation is free. No payment account, donation link, subscription,
-advertising SDK or in-app purchase is configured in this release.
+Official support page: https://ko-fi.com/furagps
 
-Possible future support models include voluntary one-time/monthly support,
-original dashboard themes, or custom layouts for virtual trucking companies.
-These are ideas, not shipped paid features or promises of revenue.
+Fura GPS is free to use. Contributions through Ko-fi are completely optional.
+Support helps with navigation improvements, Coach tools, translations and
+testing on more phones and tablets. Every contribution is appreciated.
 
-Map-data rights are separate from the MIT application code. A funding link or
-public download does not grant permission to rehost or sell third-party maps.
-See THIRD-PARTY-NOTICES.txt before distributing commercial bundles.
+The GitHub Sponsor button is configured in .github/FUNDING.yml. The README
+includes a support button linking directly to the same Ko-fi page.
+
+Source attribution and map-data licensing details remain in the project's
+THIRD-PARTY-NOTICES.txt and CREDITS.txt. Support is for Fura GPS development.

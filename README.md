@@ -8,7 +8,7 @@ City search, custom routes, seven languages and experimental ETS2 Coach DLC tool
 
 ![Fura GPS on phone, tablet and browser](docs/images/showcase.png)
 
-[Download Windows](https://github.com/vancopek123/FuraGPS/releases/download/v0.11.1/FuraGPS-Windows-0.11.1.zip) · [Download Android APK](https://github.com/vancopek123/FuraGPS/releases/download/v0.11.1/FuraGPS-Android-0.11.1.apk) · [All releases](https://github.com/vancopek123/FuraGPS/releases)
+[Download Windows](https://github.com/vancopek123/FuraGPS/releases/download/v0.11.1/FuraGPS-Windows-0.11.1.zip) · [Download Android APK](https://github.com/vancopek123/FuraGPS/releases/download/v0.11.1/FuraGPS-Android-0.11.1.apk) · [All releases](https://github.com/vancopek123/FuraGPS/releases) · [☕ Support Fura GPS](https://ko-fi.com/furagps)
 
 This is a **public beta**. See the compatibility table below for the distinction between tested components and features that still need real-game/device testing.
 
@@ -114,6 +114,18 @@ These show the actual Fura GPS demo UI at the stated viewport sizes. Phone/table
 
 The game may expose only the current stage and next target, rather than a complete hidden Coach itinerary. Approximate route geometry is labelled accordingly. Maps and custom-route distances can differ from the game. No fixed 60-FPS guarantee is made.
 
+## Support Fura GPS
+
+**Enjoying the ride? Help keep Fura GPS moving.**
+
+Fura GPS is free to use. If it has made your ETS2 or ATS drives better, you can support its development with a coffee.
+
+Contributions help with smoother navigation, Coach tools, translations and testing on more phones and tablets. Every contribution is appreciated, and donating is completely optional.
+
+[![Buy me a coffee — support Fura GPS on Ko-fi](docs/images/support-furagps.svg)](https://ko-fi.com/furagps)
+
+Thank you for every coffee, bug report and idea.
+
 ## Build, translations and contributions
 
 Source is in `furagps/`; SCS SDK headers are in `scs-sdk/`. See [BUILD.txt](furagps/BUILD.txt), [CONTRIBUTING.md](CONTRIBUTING.md) and [test coverage](furagps/TESTING-0.11.1.txt).
@@ -146,4 +158,4 @@ Source attribution and map-data licensing details are documented in the notices 
 
 See [third-party notices](furagps/THIRD-PARTY-NOTICES.txt) and [credits](furagps/CREDITS.txt). Rendering uses MapLibre GL JS and PMTiles; telemetry uses SCS's SDK. Read-only GPS layout references use the MIT-licensed ETS2LA/plugin work.
 
-Fura GPS is independent and is not endorsed by SCS Software, HaulMP or TruckNav. No payment account or funding link is currently configured; core navigation is free to use.
+Fura GPS is independent and is not endorsed by SCS Software, HaulMP or TruckNav.
