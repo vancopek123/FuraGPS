@@ -16,19 +16,15 @@ This is a **public beta**. See the compatibility table below for the distinction
 
 ### ETS2 Coach DLC — Comfort and punctuality (beta)
 
-[![ETS2 Coach demo with G-force and timetable status in tablet and phone layouts](docs/videos/furagps-demo-ets2-coach-preview.gif)](https://github.com/vancopek123/FuraGPS/raw/refs/heads/main/docs/videos/furagps-demo-ets2-coach-1080p60.mp4)
-
-**[Download the ETS2 Coach demo — 1080p, 60 fps, 24 seconds](https://github.com/vancopek123/FuraGPS/raw/refs/heads/main/docs/videos/furagps-demo-ets2-coach-1080p60.mp4)**
+![ETS2 Coach demo with G-force and timetable status in tablet and phone layouts](docs/videos/furagps-demo-ets2-coach-preview.gif)
 
 A genuine browser recording of demo bus driving on a gently curving ETS2 road section, with the G-meter and **Early / On time / Late** timetable display visible on tablet and phone layouts. The demo includes green, orange and red comfort warnings. Bus instruments and timetable values are **simulated demo data**, with scripted examples of each punctuality state. The Coach tools remain in beta development. [Recording details](docs/videos/README.md#ets2-coach-dlc--comfort-and-punctuality-beta).
 
 ### ATS — Straight-road navigation
 
-[![Fura GPS straight-road demo in tablet and phone layouts](docs/videos/furagps-demo-straight-preview.gif)](https://github.com/vancopek123/FuraGPS/raw/refs/heads/main/docs/videos/furagps-demo-straight-1080p60.mp4)
+![Fura GPS straight-road demo in tablet and phone layouts](docs/videos/furagps-demo-straight-preview.gif)
 
-**[Download the full demo video — 1080p, 60 fps, 24 seconds](https://github.com/vancopek123/FuraGPS/raw/refs/heads/main/docs/videos/furagps-demo-straight-1080p60.mp4)**
-
-A genuine recording of Fura GPS demo playback on a straight ATS road section, captured in a desktop browser at tablet and phone viewport sizes and presented inside illustrated device frames. Playback is at the original demo speed. The short animated preview loops above; the full MP4 shows continuous road movement, the vehicle marker and the heading-up 3D map. [Recording details](docs/videos/README.md).
+A genuine recording of Fura GPS demo playback on a straight ATS road section, captured in a desktop browser at tablet and phone viewport sizes and presented inside illustrated device frames. Playback is at the original demo speed. The looping animation shows road movement, the vehicle marker and the heading-up 3D map. [Recording details](docs/videos/README.md).
 
 ## What you get
 
